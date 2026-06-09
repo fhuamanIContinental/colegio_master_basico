@@ -1,12 +1,17 @@
 ﻿using ColegioMaster.DtoModels.EstadoCliente;
 using ColegioMaster.Negocio.EstadoCliente;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ColegioMaster.API.Controllers
 {
+    /// <summary>
+    /// Administrar estado cliente
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] /* => si no tienes token valido / no ingresas*/ 
     public class EstadoClienteController : ControllerBase
     {
 
@@ -22,6 +27,10 @@ namespace ColegioMaster.API.Controllers
 
         private readonly IEstadoClienteService _estadoClienteService;
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="estadoClienteService"></param>
         public EstadoClienteController(IEstadoClienteService estadoClienteService)
         {
             _estadoClienteService = estadoClienteService;

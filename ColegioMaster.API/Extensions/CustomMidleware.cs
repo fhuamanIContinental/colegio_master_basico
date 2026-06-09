@@ -20,25 +20,25 @@ namespace ColegioMaster.API.Extensions
         {
             try
             {
-                // 1. Intentar obtener el header enviado por el cliente
-                if (!context.Request.Headers.TryGetValue("codigo-aplicacion", out var codigoAplicacion)
-                    || string.IsNullOrWhiteSpace(codigoAplicacion))
-                {
-                    // Si no viene o está vacío, disparamos una excepción personalizada o manejamos el error directo
-                    await HandleBadRequestAsync(context, "El encabezado 'codigo-aplicacion' es obligatorio.");
-                    return; // Cortamos el flujo aquí, no llega a los controladores
-                }
+                //// 1. Intentar obtener el header enviado por el cliente
+                //if (!context.Request.Headers.TryGetValue("codigo-aplicacion", out var codigoAplicacion)
+                //    || string.IsNullOrWhiteSpace(codigoAplicacion))
+                //{
+                //    // Si no viene o está vacío, disparamos una excepción personalizada o manejamos el error directo
+                //    await HandleBadRequestAsync(context, "El encabezado 'codigo-aplicacion' es obligatorio.");
+                //    return; // Cortamos el flujo aquí, no llega a los controladores
+                //}
 
-                // 2. [Opcional] Si necesitas usar este código en tus Controllers o Servicios más adelante,
-                // puedes guardarlo en los Items del contexto para recuperarlo después.
-                context.Items["CodigoAplicacion"] = codigoAplicacion.ToString();
+                //// 2. [Opcional] Si necesitas usar este código en tus Controllers o Servicios más adelante,
+                //// puedes guardarlo en los Items del contexto para recuperarlo después.
+                //context.Items["CodigoAplicacion"] = codigoAplicacion.ToString();
 
-                //3 vamos a validar el código de aplicación
-                if(codigoAplicacion != "123456")
-                {
-                    await HandleBadRequestAsync(context, "Hey chochera, código de aplicación incorrecta");
-                    return; // Cortamos el flujo aquí, no llega a los controladores
-                }
+                ////3 vamos a validar el código de aplicación
+                //if(codigoAplicacion != "123456")
+                //{
+                //    await HandleBadRequestAsync(context, "Hey chochera, código de aplicación incorrecta");
+                //    return; // Cortamos el flujo aquí, no llega a los controladores
+                //}
 
                 // 4. Continúa el flujo normal si todo está en orden
                 await _next(context);
