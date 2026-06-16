@@ -7,6 +7,26 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Prefer type inference when the type is obvious
 - Avoid the `any` type; use `unknown` when type is uncertain
 
+## Naming Conventions
+
+- Input variables in all functions must use `camelCase`.
+  - Correct: `estadoVenta`
+  - Incorrect: `EstadoVenta`
+  - Incorrect: `Estado_Venta`
+  - Incorrect: `estado_venta`
+- All function names must use `UpperCamelCase` (PascalCase) and must start with a verb.
+  - Correct: `ProcesarVenta`
+  - Incorrect: `procesarVenta`
+  - Incorrect: `HaciendoVenta`
+  - Incorrect: `procesar_venta`
+
+## Project Domain Rules
+
+- The date format shown in views must be `dd/MM/yyyy`.
+- The time format shown in views must be `HH:mm:ss`.
+- For upcoming confirmation sales, use a shared component named `customConfirmModal` inside `shared`.
+- Project code, naming, and business terms must be written in Latin American Spanish (Peru).
+
 ## Angular Best Practices
 
 - Always use standalone components over NgModules

@@ -1,0 +1,47 @@
+<p>padre works!</p>
+
+
+<div>
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" [(ngModel)]="nombre" type="text">
+</div>
+
+
+<div>
+    <label for="nombre">el nombre actual es : {{ nombre() }}</label>
+
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Fecha Nacimiento</th>
+            <th>Ahorros</th>
+            <th>Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (persona of personas; track persona.id) {
+        <tr>
+            <td>{{ persona.id }}</td>
+            <td>{{ persona.nombre }}</td>
+            <td>{{ persona.edad }}</td>
+            <td>{{ persona.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+            <td>{{ persona.ahorros | currency:'PEN':'symbol':'1.2-2':'es-PE' }}</td>
+            <td [class.categoria-menor]="persona.categoria === 'menor de edad'"
+                [class.categoria-adulto]="persona.categoria === 'adulto'"
+                [class.categoria-mayor]="persona.categoria === 'mayor de edad'">
+                {{ persona.categoria }}
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<hr>
+<app-hijo
+[cantidad]="personas.length" 
+(personaEmmit)="recibirPersona($event)">
+</app-hijo>

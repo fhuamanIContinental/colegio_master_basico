@@ -1,0 +1,32 @@
+<p>hijo works!</p>
+<br>
+
+
+
+
+<label for="cantidad">cantidad de registros: {{cantidad()}} </label>
+
+
+<br>
+
+<br>
+
+<div>
+    <label for="id">Ingrese Id</label>
+    <input id="id" [(ngModel)]="data().id" type="number" >
+</div>
+<br>
+
+<div>
+    <label for="nombre">Ingrese nombre</label>
+    <input id="nombre" [(ngModel)]="data().nombre" type="text" >
+</div>
+<br>
+
+<div>
+    <label for="edad">Ingrese edad</label>
+    <input id="edad" [(ngModel)]="data().edad" type="number" >
+</div>
+<br>
+<br>
+<button (click)="isnertarPersona()"> Insertar Persona </button>

@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Padre } from './padre/padre';
+import { Hijo } from './hijo/hijo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Padre, Hijo],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss'] 
 })
 export class App {
-  protected readonly title = signal('FrontEnd');
+  protected readonly title = signal('manejar');
 }
