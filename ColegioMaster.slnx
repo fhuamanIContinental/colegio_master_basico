@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="ColegioMaster.API/ColegioMaster.API.csproj" />
-  <Project Path="ColegioMaster.DtoModels/ColegioMaster.DtoModels.csproj" />
-  <Project Path="ColegioMaster.Negocio/ColegioMaster.Negocio.csproj" />
-  <Project Path="ColegioMaster.Repositorio/ColegioMaster.Repositorio.csproj" />
-</Solution>

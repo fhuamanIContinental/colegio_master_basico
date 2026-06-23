@@ -14,6 +14,28 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
+// --- CONFIGURACIÓN DE CORS ---
+// Define el nombre de la política
+const string MisOrigenesPermitidos = "_misOrigenesPermitidos";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MisOrigenesPermitidos,
+                      policy =>
+                      {
+                          // Opción para desarrollo: Permite cualquier origen, método y encabezado
+                          policy.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+
+                          // Opción para producción (Recomendado): Reemplaza la línea de arriba y descomenta esto:
+                          // policy.WithOrigins("https://tu-frontend.com", "http://localhost:4200") 
+                          //       .AllowAnyMethod()
+                          //       .AllowAnyHeader();
+                      });
+});
+
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -94,6 +116,11 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Colegio Master API V1");
     });
 }
+
+
+// --- ACTIVACIÓN DEL MIDDLEWARE DE CORS ---
+// Importante: Debe ir antes de UseAuthorization y MapControllers
+app.UseCors(MisOrigenesPermitidos);
 
 app.UseHttpsRedirection();
 

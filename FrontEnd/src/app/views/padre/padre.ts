@@ -1,7 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Hijo } from '../hijo/hijo';
+import { EstadoClienteService } from '../../services/EstadoCliente/EstadoCliente.service';
 
 type Persona = {
   id: number;
@@ -21,7 +22,7 @@ type Persona = {
 export class Padre implements OnInit {
 
   protected readonly nombre = signal('');
-
+  private readonly _estadoClienteService = inject(EstadoClienteService);
 
   personas: Persona[] = [
     { id: 1, nombre: 'Juan', edad: 17, fechaNacimiento: this.ObtenerFechaNacimientoDesdeEdad(17), ahorros: this.ObtenerAhorroAleatorio() },
@@ -34,7 +35,18 @@ export class Padre implements OnInit {
   ngOnInit(): void {
 
     this.asignarCategoria();
+    this.listarEstadoCliente();
+  }
 
+  listarEstadoCliente() {
+    this._estadoClienteService.getAll().subscribe({
+      next: (response) => {
+        console.log('Respuesta del servicio EstadoCliente:', response);
+      },
+      error: (error) => {
+        console.error('Error al obtener los datos del servicio EstadoCliente:', error);
+      }
+    });
   }
 
   asignarCategoria() {
