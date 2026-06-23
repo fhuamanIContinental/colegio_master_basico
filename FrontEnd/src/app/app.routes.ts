@@ -12,6 +12,7 @@ export const routes: Routes = [
 
         children: [
             { path: 'padre', loadComponent: () => import('./views/padre/padre').then(m => m.Padre) },
+            { path: 'hijo', loadComponent: () => import('./views/hijo/hijo').then(m => m.Hijo) },
         ]
 
     },
